@@ -53,9 +53,21 @@ module Helpers
       @indentation ||= 0
     end
 
-    def initialize(name, content, attrs = Hash.new, &block)
-      super(name, attrs, &block)
+    def each(&block)
+      self.to_s.split("\n").each do |item|
+        block.call("#{item}\n") # otherwise content-length will lie
+      end
+      # specially for rack
+    end
+
+    def initialize(name, content = nil, attrs = Hash.new, &block)
+      attrs, content = content, nil if content.is_a?(Hash) && attrs.empty?
       self.content = ContentList.new(content, self.indentation + 1)
+      super(name, attrs, &block)
+    end
+
+    def tag(*args, &block)
+      self.content.push(Tag.new(*args, &block))
     end
 
     def to_s
@@ -79,6 +91,18 @@ module Helpers
           "#{"  " * self.indentation}#{item}"
         end
       end.join("\n")
+    end
+
+    def find_tag(&block)
+      self.find do |item|
+        block.call(item) if item.respond_to?(:name)
+      end
+    end
+
+    def select_tags(&block)
+      self.select do |item|
+        block.call(item) if item.respond_to?(:name)
+      end
     end
 
     def inspect
