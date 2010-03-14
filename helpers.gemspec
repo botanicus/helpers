@@ -6,7 +6,7 @@ require "base64"
 
 Gem::Specification.new do |s|
   s.name = "helpers"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.authors = ["Jakub Stastny aka Botanicus"]
   s.homepage = "http://github.com/botanicus/helpers"
   s.summary = "Framework-agnostic template helpers"
