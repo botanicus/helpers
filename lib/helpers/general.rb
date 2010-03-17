@@ -2,8 +2,8 @@
 
 require "uri"
 
-module Rango
-  module Helpers
+module Helpers
+  module General
     # @since 0.0.1
     def copyright(from)
       now = Time.now.year
