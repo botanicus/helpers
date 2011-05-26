@@ -70,6 +70,10 @@ module Helpers
       self.content.push(Tag.new(*args, &block))
     end
 
+    def self_closing_tag(*args, &block)
+      self.content.push(SelfCloseTag.new(*args, &block))
+    end
+
     def to_s
       "#{"  " * self.indentation}<#{name}#{attrs.to_html_attrs}>\n#{"  " * self.indentation}#{content}\n#{"  " * self.indentation}</#{name}>"
     end

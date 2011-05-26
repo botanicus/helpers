@@ -1,9 +1,12 @@
-= Version 0.0.1
-  * Tag, SelfCloseTag builder classes
-  * Form, FormFor, ButtonTo, ButtonToDelete classes
+= Version 0.1
+  * Added Padrino adapter.
+
+= Version 0.0.3
+  * Fixed Rango adapter (kudos to Tass)
 
 = Version 0.0.2
   * Imported helpers from Rango
 
-= Version 0.0.3
-  * Fixed Rango adapter (kudos to Tass)
+= Version 0.0.1
+  * Tag, SelfCloseTag builder classes
+  * Form, FormFor, ButtonTo, ButtonToDelete classes

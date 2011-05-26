@@ -39,14 +39,14 @@ module Helpers
 
     # @since 0.0.2
     def javascript(basename)
-      path = Assets.root.join("javascripts/#{basename}.js")
+      path = Assets.root.join("javascripts/#{basename}")
       Tag.new(:script, src: path.url, type: "text/javascript")
     end
 
     # @since 0.0.2
     def stylesheet(basename, attrs = Hash.new)
       path = Assets.root.join("stylesheets/#{basename}")
-      default = {href: path.url, media: 'screen', rel: 'stylesheet', type: 'text/css'}
+      default = {href: path.url, media: "screen", rel: "stylesheet", type: "text/css"}
       SelfCloseTag.new(:link, default.merge(attrs))
     end
 

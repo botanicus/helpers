@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 require "uri"
 
 module Helpers
@@ -26,7 +25,7 @@ module Helpers
     # => "<a href='mailto:joe@example.com'>joe@example.com</a>"
     # mail_to "joe@example.com", "Title"
     # => "<a href='mailto:joe@example.com'>Title</a>"
-    def mail_to(mail, text = mail)
+    def email_link(mail, text = mail)
       mail.gsub!("@" "&#x40;")
       Tag.new(:a, text, href: "mailto:#{mail}")
     end
