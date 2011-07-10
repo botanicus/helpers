@@ -42,6 +42,11 @@ module Helpers
   end
 
   class Tag < SelfCloseTag
+
+    # from http://htmlhelp.com/reference/html40/inline.html
+    INLINE_ELEMENTS = %w( A ABBR ACRONYM B BDO BIG BR CITE CODE DFN EM I IMG INPUT KBD LABEL
+                          Q SAMP SELECT SMALL SPAN STRONG SUB SUP TEXTAREA TT VAR )      
+
     # content can be string, tag or an array of tags
     attr_writer :content
     def content
@@ -75,7 +80,11 @@ module Helpers
     end
 
     def to_s
-      "#{"  " * self.indentation}<#{name}#{attrs.to_html_attrs}>\n#{"  " * self.indentation}#{content}\n#{"  " * self.indentation}</#{name}>"
+      if INLINE_ELEMENTS.include? name.to_s.upcase
+        "<#{name}#{attrs.to_html_attrs}>#{content.to_s.strip}</#{name}>"
+      else
+        "#{"  " * self.indentation}<#{name}#{attrs.to_html_attrs}>\n#{"  " * self.indentation}#{content}\n#{"  " * self.indentation}</#{name}>"
+      end
     end
   end
 
